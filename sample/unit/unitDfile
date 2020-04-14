@@ -1,0 +1,18 @@
+# ベースイメージunit取得
+FROM nginx/unit:1.16.0-python3.7
+
+# 作業ディレクトリの作成
+WORKDIR /usr/local/nginx/app
+
+# conf.jsonのコピー
+COPY conf.json /docker-entrypoint.d/
+
+# main.pyのコピー
+COPY main.py /usr/local/nginx/app/
+
+# 実行環境準備（flaskインストール）
+RUN ["/bin/bash","-c","apt update"]
+RUN ["/bin/bash","-c","apt -y upgrade"]
+RUN ["/bin/bash","-c","apt install -y python3.7"]
+RUN ["/bin/bash","-c","apt install -y python-pip python3-pip"]
+RUN ["/bin/bash","-c","pip3 install flask"]
