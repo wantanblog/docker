@@ -1,0 +1,27 @@
+{% block page_content %}
+<h1>Sample List@docker in ec2</h1>
+<div>
+    <table>
+      <thread>
+        <tr>
+          <th>name</th>
+          <th>num</th>
+          <th>type</th>
+        </tr>
+      </thread>
+      <tbody>
+        {% for sample in contents %}
+        <tr>
+          <td>{{ sample.name }}</td>
+          <td>{{ sample.num }}</td>
+          <td>{{ sample.type }}</td>
+        </tr>
+        {% else %}
+          <td>no entry exist!</td>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+# ベースイメージnginx取得
+FROM nginx:1.17
+
+# 設定ファイルのコピー
+COPY default.conf /etc/nginx/conf.d/
