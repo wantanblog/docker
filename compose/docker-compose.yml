@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+ webserver:
+  build:
+   context: ./nginx
+   dockerfile: nginxDfile
+  depends_on:
+        - apserver
+  ports:
+   - "8080:80"
+ apserver:
+  build:
+   context: ./unit
+   dockerfile: unitDfile
+  depends_on:
+        - dbserver
+  ports:
+   - "8082"
+ dbserver:
+  build:
+   context: ./mongo
+   dockerfile: mongoDfile
+  ports:
+   - "28003:27017"

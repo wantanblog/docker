@@ -1,0 +1,19 @@
+# ベースイメージunit取得
+FROM nginx/unit:1.16.0-python3.7
+
+# AP用ディレクトリの作成
+RUN ["/bin/bash","-c","mkdir -p /usr/local/nginx/app/"]
+
+# APディレクトリのコピー
+COPY app/ /usr/local/nginx/app/
+
+# conf.jsonのコピー
+COPY conf.json /docker-entrypoint.d/
+
+# 実行環境準備（flaskインストール）
+RUN ["/bin/bash","-c","apt update"]
+RUN ["/bin/bash","-c","apt -y upgrade"]
+RUN ["/bin/bash","-c","apt install -y python3.7"]
+RUN ["/bin/bash","-c","apt install -y python-pip python3-pip"]
+RUN ["/bin/bash","-c","pip3 install flask"]
+RUN ["/bin/bash","-c","pip3 install pymongo"]

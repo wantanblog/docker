@@ -1,0 +1,11 @@
+# ベースイメージmongo取得
+FROM mongo:4.2.5
+
+# 環境変数の設定
+ENV MONGO_INITDB_DATABASE "test"
+
+# ファイルのコピー
+COPY setup.js /docker-entrypoint-initdb.d/
+
+# 認証を有効化して起動
+CMD ["mongod", "--auth"]
